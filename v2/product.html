@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+
+<style>@view-transition { navigation:auto; }</style>
+
+<link rel="expect" href="#ready" blocking="render">
+<script src="v2/js/transitions.js" blocking="render"></script>
+<title>Soshiotsuki</title>
+<link rel="stylesheet" href="v2/css/v2.css?v=9">
+</head>
+<body>
+<main class="content pdp" id="main" style="padding-top:24px"></main>
+
+<script src="js/data.js?v=3"></script>
+<script src="v2/js/data2.js?v=7"></script>
+<script src="v2/js/v2.js?v=7"></script>
+<script>
+
+  const p = P[Final.qs.get('p')] || P['drape-facing-shirt'];
+  const st = STORY[p.h] || {};
+  document.title = 'Soshiotsuki — ' + p.name;
+  const gallery = shot.gallery(p);
+  const notes = { cloth: st.cloth || `${p.fabric}. Made in Japan.`, ...(st.made ? { made:st.made } : {}), ...(p.notes ? { detail:p.notes.detail } : {}) };
+
+  const tabs = [['cloth', 'Cloth'], ...(notes.made ? [['made', 'Made in Japan']] : []), ...(notes.detail ? [['detail', 'Detail']] : [])];
+
+  const seed = PRODUCTS.indexOf(p);
+  const worn = CAT_ORDER.filter(c => c !== p.cat && c !== 'accessories' && !(p.cat === 'jackets' && c === 'coats') && !(p.cat === 'coats' && c === 'jackets'))
+    .map(c => PRODUCTS.filter(x => x.cat === c && !x.sold)).filter(l => l.length).map(l => l[seed % l.length]).slice(0, 3);
+  const size = s => `<button class="${s === '48' ? 'cur' : ''} ${s === '52' ? 'na' : ''}">${s}</button>`;
+
+  document.getElementById('main').innerHTML = `
+    <div class="stack">${gallery.map(([img, l], i) => `<div class="g">${Final.imgTag(img, i === 0 ? shot.cloth(p) : null)}<span class="chip">Image coming</span></div>`).join('')}</div>
+    <div class="info">
+      <div>
+        <h1 class="l">${p.name}</h1>
+        ${st.line ? `<p class="l line-l">${st.line}</p>` : ''}
+      </div>
+      ${st.story ? `<div><p class="m story">${st.story}</p></div>` : ''}
+      <div>
+        <div class="tabs focus">${tabs.map(([k, l], i) => `<button data-tab="${k}" class="${i ? '' : 'cur'}">${l}</button>`).join('')}</div>
+        <p class="m tabtext" id="tabtext" style="min-height:48px">${notes.cloth}</p>
+      </div>
+      <div class="row"><span><span class="muted">Colour</span>&nbsp;&nbsp;${p.colour}</span></div>
+      <div class="row"><div class="sizes focus">${['44', '46', '48', '50', '52'].map(size).join('')}</div><a class="muted" href="#">Size guide</a></div>
+      ${p.sold
+        ? `<button class="btn line" onclick="Final.toast('We will write when it is back')"><span>Sold out — notify me</span><span>${Final.price(p.price)}</span></button>`
+        : `<button class="btn" data-add="1"><span>Add to bag</span><span>${Final.price(p.price)}</span></button>`}
+      <div><span class="muted">Complete the look</span><div class="mini">${worn.map(Final.mini).join('')}</div></div>
+    </div>`;
+
+  Final.$('.tabs').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    Final.$$('.tabs button').forEach(x => x.classList.toggle('cur', x === b));
+    const t = document.getElementById('tabtext'); t.classList.add('out');
+    setTimeout(() => { t.innerHTML = notes[b.dataset.tab]; t.classList.remove('out'); }, 200);
+  });
+  Final.init({ page:'product', cat: p.cat });
+</script>
+<div id="ready" hidden></div>
+</body>
+</html>

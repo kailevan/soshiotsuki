@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+
+<style>@view-transition { navigation:auto; }</style>
+
+<link rel="expect" href="#ready" blocking="render">
+<script src="v2/js/transitions.js" blocking="render"></script>
+<title>Soshiotsuki</title>
+<link rel="stylesheet" href="v2/css/v2.css?v=9">
+</head>
+<body class="home">
+<main>
+
+  <section class="mod" id="hero">
+    <video id="film" src="assets/video/ss27_loop.mp4?v=3" poster="assets/video/ss27_poster.webp" autoplay muted loop playsinline></video>
+    <div class="shade"></div>
+    <div class="brush" id="brush" aria-label="Soshiotsuki"></div>
+    <div class="vctl">
+      <button id="pause" aria-label="Pause"><svg viewBox="0 0 14 14"><rect x="3" y="2" width="2.4" height="10" fill="currentColor"/><rect x="8.6" y="2" width="2.4" height="10" fill="currentColor"/></svg></button>
+    </div>
+    <a class="title caps enter" href="v2/shop.html">Enter</a>
+  </section>
+
+  <div class="col" id="col">
+    <div class="opening" id="opening"></div>
+
+    <section>
+      <div class="head"><span class="caps">Bestsellers</span><a class="caps" href="v2/shop.html">Shop all</a></div>
+      <div class="strip4" id="best"></div>
+    </section>
+
+    <section class="prize-block">
+      <a class="img" href="v2/prize.html"><img src="assets/about/lvmh-prize-winner.webp" alt="Soshi Otsuki, LVMH Prize winner 2025"></a>
+      <div class="text" id="prizeText"></div>
+    </section>
+
+    <div class="seasons">
+      <figure><a href="v2/spring-summer-2027.html"><div class="img wide"><img src="assets/img/show_ss27_paris.webp" alt="The Spring Summer 2027 show in Paris"></div></a><figcaption><span class="caps">Spring Summer 2027</span><span class="muted">Paris, June 2026</span></figcaption></figure>
+      <figure><a href="v2/fall-winter-2026.html"><div class="img wide"><img src="assets/img/show_fw26_florence.webp" alt="The Fall Winter 2026 show in Florence"></div></a><figcaption><span class="caps">Fall Winter 2026</span><span class="muted">Florence, January 2026</span></figcaption></figure>
+    </div>
+
+    <div class="pair" id="shopPair"></div>
+
+    <a class="about-block" href="v2/about.html">
+      <span class="img"><img src="assets/img/film_bunka_doc_002_crop.webp" alt="The Soshiotsuki inner label, size 48"></span>
+      <span class="t"><span class="caps">About</span><span class="muted">Tokyo, since 2015</span></span>
+    </a>
+  </div>
+</main>
+
+<script src="js/data.js?v=3"></script>
+<script src="v2/js/data2.js?v=7"></script>
+<script src="v2/js/v2.js?v=7"></script>
+<script>
+  Final.init({ page:'home' });
+  Final.brush(document.getElementById('brush'));
+
+  const s = SENTENCE[Final.qs.get('s')] || SENTENCE.b;
+  document.getElementById('opening').innerHTML = `<p class="sentence">${s.text}</p>${s.jp ? `<p class="jp">${s.jp}</p><p class="src">${s.src}</p>` : ''}`;
+
+  document.getElementById('best').innerHTML = BEST.map(h => Final.tile(P[h])).join('');
+
+  const best = document.getElementById('best');
+  let x0 = null, s0 = 0, moved = false;
+  best.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; x0 = e.clientX; s0 = best.scrollLeft; moved = false; });
+  addEventListener('pointermove', e => {
+    if (x0 === null) return;
+    if (!moved && Math.abs(e.clientX - x0) > 6) { moved = true; best.classList.add('drag'); }
+    if (moved) best.scrollLeft = s0 - (e.clientX - x0);
+  });
+  addEventListener('pointerup', () => { x0 = null; requestAnimationFrame(() => best.classList.remove('drag')); });
+  best.addEventListener('dragstart', e => e.preventDefault());
+
+  document.getElementById('prizeText').innerHTML = `
+    <span class="caps"><a class="prize-link" href="v2/prize.html">LVMH Prize 2025${Final.STAR}</a></span>
+    <blockquote>“He expressed emotion and know-how… It was quite unanimous.”<cite>${PRIZE.quoteArnault.who}</cite></blockquote>
+    <p class="m">Shortlisted in 2016, two collections in. Back nine years later to win.</p>
+    <a class="caps muted" href="v2/prize.html">Read the story</a>`;
+
+  const fig = (href, img, fallback, title, sub) => `<figure><a href="${href}"><div class="img">${Final.imgTag(img, fallback)}<span class="chip">Image coming</span></div></a><figcaption><span class="caps">${title}</span><span class="muted">${sub}</span></figcaption></figure>`;
+  document.getElementById('shopPair').innerHTML =
+    fig('v2/shop.html?cat=shirts', 'pieces/regular-collar-shirt__front', 'pieces/regular-collar-shirt__cloth', 'Shirts', 'From ' + Final.price(Math.min(...PRODUCTS.filter(p => p.cat === 'shirts').map(p => p.price)))) +
+    fig('v2/shop.html?cat=jackets', 'pieces/heavy-wale-single-breasted-jacket__front', null, 'Tailoring', 'Jackets and coats');
+
+  const film = document.getElementById('film');
+  document.getElementById('pause').onclick = e => {
+    film.paused ? film.play() : film.pause();
+    e.currentTarget.innerHTML = film.paused
+      ? '<svg viewBox="0 0 14 14"><path d="M3.5 2l8 5-8 5z" fill="currentColor"/></svg>'
+      : '<svg viewBox="0 0 14 14"><rect x="3" y="2" width="2.4" height="10" fill="currentColor"/><rect x="8.6" y="2" width="2.4" height="10" fill="currentColor"/></svg>';
+  };
+
+  const hero = document.getElementById('hero'), topnav = Final.$('.topnav'), index = Final.$('.index'), brushEl = document.getElementById('brush');
+  const chromeEls = Final.$$('.wm, .tr, .topnav');
+  const update = () => {
+    const y = scrollY, H = hero.offsetHeight, onFilm = y < H - 40;
+    chromeEls.forEach(el => el.classList.toggle('on-image', onFilm));
+    const past = y > H * 0.7;
+    topnav.classList.toggle('off', past);
+    index.classList.toggle('on', past);
+    brushEl.style.opacity = Math.min(1, Math.max(0, (H * 0.6 - y) / (H * 0.35)));
+  };
+  update(); addEventListener('scroll', update, { passive:true });
+</script>
+<div id="ready" hidden></div>
+</body>
+</html>

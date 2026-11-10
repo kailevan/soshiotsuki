@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+
+<style>@view-transition { navigation:auto; }</style>
+
+<link rel="expect" href="#ready" blocking="render">
+<script src="v2/js/transitions.js" blocking="render"></script>
+<title>Soshiotsuki — About</title>
+<link rel="stylesheet" href="v2/css/v2.css?v=9">
+</head>
+<body>
+<main class="content about" style="padding-top:24px">
+  <div class="text">
+    <p class="l">Soshi Otsuki was born in Chiba in 1990. He studied menswear at Bunka Fashion College in Tokyo and started the label in 2015.</p>
+    <p class="l">His collections take the uniforms of modern Japan apart, above all the salaryman’s suit, and make them again in Japan.</p>
+    <dl>
+      <dt>2015</dt><dd>Soshiotsuki, Tokyo</dd>
+      <dt>2016</dt><dd>LVMH Prize, shortlist</dd>
+      <dt>2025</dt><dd><a class="prize-link" href="v2/prize.html">LVMH Prize<svg class="star" viewBox="0 0 10 10"><path d="M5 0 L6 4 L10 5 L6 6 L5 10 L4 6 L0 5 L4 4 Z" fill="currentColor"/></svg></a></dd>
+      <dt>2026</dt><dd>Pitti Uomo, Florence, January</dd>
+      <dt>2026</dt><dd>Paris Fashion Week, June</dd>
+    </dl>
+  </div>
+  <div class="imgs">
+    <div style="aspect-ratio:1100/700;overflow:hidden"><img src="assets/img/film_bunka_doc_002_crop.jpg" alt=""></div>
+
+    <div style="aspect-ratio:3/4;overflow:hidden"><img src="assets/img/film_fw26_florence_084.webp" alt="The hall in Florence before the Fall Winter 2026 show" style="object-position:40% 50%"></div>
+  </div>
+</main>
+
+<script src="js/data.js?v=3"></script>
+<script src="v2/js/data2.js?v=7"></script>
+<script src="v2/js/v2.js?v=7"></script>
+<script>Final.init({ page:'about' });</script>
+<div id="ready" hidden></div>
+</body>
+</html>

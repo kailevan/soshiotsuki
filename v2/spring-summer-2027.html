@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+
+<style>@view-transition { navigation:auto; }</style>
+
+<link rel="expect" href="#ready" blocking="render">
+<script src="v2/js/transitions.js" blocking="render"></script>
+<title>Soshiotsuki — Spring Summer 2027</title>
+<link rel="stylesheet" href="v2/css/v2.css?v=9">
+</head>
+<body>
+<main class="content" id="main"></main>
+
+<script src="js/data.js?v=3"></script>
+<script src="v2/js/data2.js?v=7"></script>
+<script src="v2/js/v2.js?v=7"></script>
+<script>
+
+  const main = document.getElementById('main'), n = +Final.qs.get('look');
+  const url = Final.url.ss27look;
+  const look = LOOKS27.find(l => l.n === n);
+  if (look) {
+    const prev = (n + 33) % 35 + 1, next = n % 35 + 1;
+    main.classList.add('pdp'); main.style.paddingTop = '24px';
+    main.innerHTML = `
+      <div class="stack"><div class="g"><img src="${IMG(look.img)}" alt="Look ${n}"></div></div>
+      <div class="info">
+        <div class="lookhead"><span class="l">Look ${n}</span><nav class="focus" style="display:flex;gap:16px"><a class="muted" href="${url(prev)}">Previous</a><a class="muted" href="${url(next)}">Next</a><a class="muted" href="${Final.url.ss27}">Close</a></nav></div>
+        <p class="m">Spring Summer 2027, his first show in Paris, June 2026. A summer he imagined as a teenager, at his grandmother’s house in Nagoya, while a classmate was supposedly in Hawaii.</p>
+        <p class="m muted">Not available yet.</p>
+        <button class="btn line" onclick="Final.toast('We will write when it arrives')"><span>Notify me</span><span>Look ${n}</span></button>
+      </div>`;
+  } else {
+    main.innerHTML = `<section class="grid3">${LOOKS27.map(l => `<a class="tile" href="${url(l.n)}"><div class="img"><img src="${IMG(l.img)}" alt="Look ${l.n}" loading="lazy"></div><div class="txt"><span class="name">Look ${l.n}</span></div></a>`).join('')}</section>`;
+  }
+  Final.init({ page:'ss27' });
+</script>
+<div id="ready" hidden></div>
+</body>
+</html>

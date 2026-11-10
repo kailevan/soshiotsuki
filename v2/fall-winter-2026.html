@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+
+<style>@view-transition { navigation:auto; }</style>
+
+<link rel="expect" href="#ready" blocking="render">
+<script src="v2/js/transitions.js" blocking="render"></script>
+<title>Soshiotsuki — Fall Winter 2026</title>
+<link rel="stylesheet" href="v2/css/v2.css?v=9">
+</head>
+<body>
+<main class="content" id="main"></main>
+
+<script src="js/data.js?v=3"></script>
+<script src="v2/js/data2.js?v=7"></script>
+<script src="v2/js/v2.js?v=7"></script>
+<script>
+
+  const main = document.getElementById('main'), n = +Final.qs.get('look');
+  if (L26[n]) {
+    const look = L26[n], i = LOOKS26.indexOf(look);
+    const prev = LOOKS26[(i - 1 + LOOKS26.length) % LOOKS26.length], next = LOOKS26[(i + 1) % LOOKS26.length];
+    main.classList.add('pdp'); main.style.paddingTop = '24px';
+    main.innerHTML = `
+      <div class="stack"><div class="g"><img src="${IMG(look.img)}" alt="Look ${n}"></div></div>
+      <div class="info">
+        <div class="lookhead"><span class="l">Look ${n}</span><nav class="focus" style="display:flex;gap:16px"><a class="muted" href="${Final.url.look(prev.n)}">Previous</a><a class="muted" href="${Final.url.look(next.n)}">Next</a><a class="muted" href="${Final.url.collection}">Close</a></nav></div>
+        <p class="m">Fall Winter 2026, shown at Pitti Uomo in Florence in January 2026: his first runway show.</p>
+        <a class="btn line" href="${Final.url.shop()}"><span>Shop the collection</span><span></span></a>
+      </div>`;
+  } else {
+    main.innerHTML = `<section class="grid3">${LOOKS26.map(Final.lookTile).join('')}</section>`;
+  }
+  Final.init({ page:'collection' });
+</script>
+<div id="ready" hidden></div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+
+<style>@view-transition { navigation:auto; }</style>
+
+<link rel="expect" href="#ready" blocking="render">
+<script src="v2/js/transitions.js" blocking="render"></script>
+<title>Soshiotsuki — LVMH Prize 2025</title>
+<link rel="stylesheet" href="v2/css/v2.css?v=9">
+</head>
+<body>
+<main class="content prizepage" id="main"></main>
+
+<script src="js/data.js?v=3"></script>
+<script src="v2/js/data2.js?v=7"></script>
+<script src="v2/js/v2.js?v=7"></script>
+<script>
+
+  const q = o => `<blockquote>“${o.q}”<cite>${o.who}</cite></blockquote>`;
+  const used = [...new Set([PRIZE.quoteArnault.src, PRIZE.mission.src, PRIZE.after.src, ...PRIZE.timeline.map(t => t[2]), 'ESQ', 'TEN'])];
+  document.getElementById('main').innerHTML = `
+    <div class="imgs">
+
+      <div style="aspect-ratio:4/5;overflow:hidden"><img src="assets/about/lvmh-prize-winner.webp" alt="Soshi Otsuki, LVMH Prize winner 2025"></div>
+      <div style="aspect-ratio:2/3;overflow:hidden"><img src="assets/fw26/017.webp" alt="Fall Winter 2026, look 17"></div>
+    </div>
+    <div class="text">
+      <h1 class="caps">LVMH Prize 2025${Final.STAR}</h1>
+      <p class="l">${PRIZE.lead}</p>
+      ${q(PRIZE.quoteArnault)}
+      <p class="m">${PRIZE.jury}</p>
+      ${q(PRIZE.mission)}
+      <p class="m">${PRIZE.first}</p>
+      ${q(PRIZE.after)}
+      <dl>${PRIZE.timeline.map(([y, t]) => `<dt>${y}</dt><dd>${t}</dd>`).join('')}</dl>
+      <a class="btn line" href="${Final.url.shop()}"><span>The pieces</span><span>Shop</span></a>
+      <p class="srcs">Sources: ${used.map(k => SRC[k]).join(' · ')}. Portrait: LVMH Prize.</p>
+    </div>`;
+  Final.init({ page:'prize' });
+</script>
+<div id="ready" hidden></div>
+</body>
+</html>

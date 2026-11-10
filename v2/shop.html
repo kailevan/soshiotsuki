@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+
+<style>@view-transition { navigation:auto; }</style>
+
+<link rel="expect" href="#ready" blocking="render">
+<script src="v2/js/transitions.js" blocking="render"></script>
+<title>Soshiotsuki — Shop</title>
+<link rel="stylesheet" href="v2/css/v2.css?v=9">
+</head>
+<body>
+<main class="content"><section class="grid3" id="grid"></section></main>
+
+<script src="js/data.js?v=3"></script>
+<script src="v2/js/data2.js?v=7"></script>
+<script src="v2/js/v2.js?v=7"></script>
+<script>
+
+  const cat = Final.qs.get('cat') || 'all';
+  document.getElementById('grid').innerHTML = sortShop(PRODUCTS.filter(p => cat === 'all' || p.cat === cat)).map(Final.tile).join('');
+  Final.init({ page:'shop', cat });
+</script>
+<div id="ready" hidden></div>
+</body>
+</html>
