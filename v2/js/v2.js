@@ -32,7 +32,7 @@ const Final = (() => {
     const tr = `<nav class="tr focus chrome caps"><a href="${url.about}" class="${page === 'about' ? 'cur' : ''}">About</a><a href="#" class="bag">${bag()}</a></nav>`;
     const shopOpen = page === 'shop' || page === 'product';
 
-    const cats = `<div class="cats focus">${CATS2.map(c => `<a href="${url.shop(c)}" class="${shopOpen && c === cat ? 'cur' : ''}">· ${CAT_NAME[c]}</a>`).join('')}</div>`;
+    const cats = `<div class="cats focus">${CATS2.map(c => `<a href="${url.shop(c)}" class="${shopOpen && c === cat ? 'cur' : ''}"><span aria-hidden="true">· </span><span class="w">${CAT_NAME[c]}</span></a>`).join('')}</div>`;
     const index = `<nav class="index${page === 'home' ? ' home-index' : ''}">
       <div class="focus caps"><a href="${url.shop()}" class="${shopOpen ? 'cur' : ''}">Shop</a></div>${cats}
       <div class="focus caps"><a href="${url.ss27}" class="${page === 'ss27' ? 'cur' : ''}">Spring Summer 2027</a><a href="${url.collection}" class="${page === 'collection' ? 'cur' : ''}">Fall Winter 2026</a></div>

@@ -97,3 +97,18 @@ body.show-standins .check { display:block; }
 .lookhead nav:has(a:hover) a:not(:hover) { color:var(--faint) !important; }
 
 .seasons figure a:hover .img img { transform:none; }
+
+html, body { overscroll-behavior:none; }
+.strip4 { overscroll-behavior-x:none; }
+
+.index .focus:hover > *, .index .focus:has(> a:hover) > a:not(:hover),
+.tr.focus:hover > *, .tr:has(a:hover) a:not(:hover),
+.topnav.focus:hover > *, .topnav:has(a:hover) a:not(:hover),
+.foot.focus:hover > *, .foot:has(a:hover) a:not(:hover),
+.lookhead nav.focus:hover > *, .lookhead nav:has(a:hover) a:not(:hover) { color:var(--ink) !important; }
+.on-image.tr.focus:hover > *, .on-image.tr:has(a:hover) a:not(:hover),
+.on-image.topnav.focus:hover > *, .on-image.topnav:has(a:hover) a:not(:hover) { color:var(--on-image) !important; }
+.index a:hover, .index a.cur, .tr a:hover, .tr a.cur, .topnav a:hover, .foot a:hover, .lookhead nav a:hover {
+  text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
+.index .cats a:hover, .index .cats a.cur { text-decoration:none; }
+.index .cats a:hover .w, .index .cats a.cur .w { text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
