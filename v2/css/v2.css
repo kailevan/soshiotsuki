@@ -95,3 +95,8 @@ body.show-standins .check { display:block; }
 .tr:has(a:hover) a:not(:hover),
 .foot:has(a:hover) a:not(:hover),
 .lookhead nav:has(a:hover) a:not(:hover) { color:var(--faint) !important; }
+
+.mod .title.enter { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.mod .title.enter .down { width:10px; height:16px; animation:enterDown 2.4s var(--ease) infinite; }
+@keyframes enterDown { 0%, 100% { transform:translateY(0); } 50% { transform:translateY(4px); } }
+.seasons figure a:hover .img img { transform:none; }
