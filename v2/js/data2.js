@@ -79,7 +79,7 @@ const STORY = {
     cloth:"Wool, 100%. Hand-knitted. Made in Japan." },
   'last-button-vest': { name:"Sebiro Vest", line:"A waistcoat that keeps the old rules",
     story:"Grey wool dobby gives this vest a small woven check, visible at arm's length. It follows the waistcoat of the sebiro, the Japanese salaryman's business suit, down to its pointed front hem.",
-    made:"Mills in Bishu, in Aichi, weave the check on dobby looms, which lift single threads to draw the pattern. They still run this slow weave on older machines.",
+    made:"Mills in Bishu, in Aichi, weave the check on dobby looms, which lift single threads to draw the pattern.",
     cloth:"Wool dobby, 100%. Made in Japan." },
   'heavy-wale-single-breasted-jacket': { name:"Koruten Jacket", line:"A country cloth given office form",
     story:"Wide-wale brown corduroy, koruten in Japanese, belongs to the countryside and the weekend. SOSHIOTSUKI gives it the shape of an office jacket, with notched lapels and a three-button front. With the Koruten Trousers it forms a full office suit in the cloth of a country walk. On its own it goes over a knit. The ridges of the wale hide the creases a train seat leaves in smoother cloth, and the jacket arrives composed.",
