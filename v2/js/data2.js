@@ -78,7 +78,7 @@ const STORY = {
     made:"One knitter in Japan makes each pullover by hand over several days. The studio keeps a record of who made which one.",
     cloth:"Wool, 100%. Hand-knitted. Made in Japan." },
   'last-button-vest': { name:"Sebiro Vest", line:"A waistcoat that keeps the old rules",
-    story:"Grey wool dobby gives this vest a small woven check, visible at arm's length. It follows the waistcoat of the sebiro, the Japanese salaryman's business suit, down to its pointed front hem, and some trace the word to Savile Row. The vest keeps the rule credited to Edward VII, with the last button left open, and sits under a jacket or alone over a shirt. An English custom endures in the Japanese office uniform.",
+    story:"Grey wool dobby gives this vest a small woven check, visible at arm's length. It follows the waistcoat of the sebiro, the Japanese salaryman's business suit, down to its pointed front hem.",
     made:"Mills in Bishu, in Aichi, weave the check on dobby looms, which lift single threads to draw the pattern. They still run this slow weave on older machines.",
     cloth:"Wool dobby, 100%. Made in Japan." },
   'heavy-wale-single-breasted-jacket': { name:"Koruten Jacket", line:"A country cloth given office form",
