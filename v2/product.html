@@ -16,7 +16,7 @@
 <main class="content pdp" id="main" style="padding-top:24px"></main>
 
 <script src="js/data.js?v=3"></script>
-<script src="v2/js/data2.js?v=9"></script>
+<script src="v2/js/data2.js?v=10"></script>
 <script src="v2/js/v2.js?v=8"></script>
 <script>
 
@@ -24,9 +24,10 @@
   const st = STORY[p.h] || {};
   document.title = 'Soshiotsuki — ' + p.name;
   const gallery = shot.gallery(p);
-  const notes = { cloth: st.cloth || `${p.fabric}. Made in Japan.`, ...(st.made ? { made:st.made } : {}), ...(p.notes ? { detail:p.notes.detail } : {}) };
 
-  const tabs = [['cloth', 'Cloth'], ...(notes.made ? [['made', 'Made in Japan']] : []), ...(notes.detail ? [['detail', 'Detail']] : [])];
+  const notes = { cloth: (st.cloth || `${p.fabric}. Made in Japan.`) + (st.made ? `<br><br>${st.made}` : ''), ...(p.notes ? { detail:p.notes.detail } : {}) };
+  const clothLabel = ['oiled-leather-blouson', 'cow-suede-harrington-jacket', 'juzu-necklace'].includes(p.h) ? 'Material' : 'Fabric';
+  const tabs = [['cloth', clothLabel], ...(notes.detail ? [['detail', 'Detail']] : [])];
 
   const seed = PRODUCTS.indexOf(p);
   const worn = CAT_ORDER.filter(c => c !== p.cat && c !== 'accessories' && !(p.cat === 'jackets' && c === 'coats') && !(p.cat === 'coats' && c === 'jackets'))
