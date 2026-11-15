@@ -14,7 +14,7 @@ NEW_SHIRTS.forEach(h => GEN_FRONT.add(h));
 
 ['open-placket-jacket','open-placket-clasic-drill-coat','reversible-sewing-wool-shirt','cow-suede-harrington-jacket'].forEach(h => GEN_CLOTH.add(h));
 
-const CROP = { 'kimono-lining-shirt':[57, 9, 1.75] };
+const CROP = { 'kimono-lining-shirt':[57, 9, 1.75], 'knit-gilet':[48, 9, 1.75], 'cable-handmade-knit-pullover':[50, 10, 1.75], 'last-button-vest':[49, 9, 1.75] };
 
 const SOLD = new Set(['draped-construction-bowed-lapel-jacket','oiled-leather-blouson','open-placet-cashmere-coat','reversible-sewing-wool-shirt']);
 PRODUCTS.forEach(p => p.sold = SOLD.has(p.h));
