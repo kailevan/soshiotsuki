@@ -30,7 +30,9 @@
   const tabs = [['cloth', clothLabel], ...(notes.detail ? [['detail', 'Detail']] : [])];
 
   const seed = PRODUCTS.indexOf(p);
-  const worn = CAT_ORDER.filter(c => c !== p.cat && c !== 'accessories' && !(p.cat === 'jackets' && c === 'coats') && !(p.cat === 'coats' && c === 'jackets'))
+
+  const PAIR = { 'last-button-vest': ['regular-collar-shirt', 'double-inverted-tuck-trousers', 'open-placket-jacket'] };
+  const worn = PAIR[p.h] ? PAIR[p.h].map(h => P[h]) : CAT_ORDER.filter(c => c !== p.cat && c !== 'accessories' && !(p.cat === 'jackets' && c === 'coats') && !(p.cat === 'coats' && c === 'jackets'))
     .map(c => PRODUCTS.filter(x => x.cat === c && !x.sold)).filter(l => l.length).map(l => l[seed % l.length]).slice(0, 3);
   const size = s => `<button class="${s === '48' ? 'cur' : ''} ${s === '52' ? 'na' : ''}">${s}</button>`;
 
@@ -51,7 +53,7 @@
       ${p.sold
         ? `<button class="btn line" onclick="Final.toast('We will write when it is back')"><span>Sold out — notify me</span><span>${Final.price(p.price)}</span></button>`
         : `<button class="btn" data-add="1"><span>Add to bag</span><span>${Final.price(p.price)}</span></button>`}
-      <div><span class="muted">Complete the look</span><div class="mini">${worn.map(Final.mini).join('')}</div></div>
+      <div><span class="muted">Wear it with</span><div class="mini">${worn.map(Final.mini).join('')}</div></div>
     </div>`;
 
   Final.$('.tabs').addEventListener('click', e => {
