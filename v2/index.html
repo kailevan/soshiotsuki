@@ -81,7 +81,7 @@
     <p class="m">Shortlisted in 2016, two collections in. Back nine years later to win.</p>
     <a class="caps muted" href="v2/prize.html">Read the story</a>`;
 
-  const fig = (href, img, fallback, title, sub) => `<figure><a href="${href}"><div class="img">${Final.imgTag(img, fallback)}<span class="chip">Image coming</span></div></a><figcaption><span class="caps">${title}</span><span class="muted">${sub}</span></figcaption></figure>`;
+  const fig = (href, img, fallback, title, sub) => `<figure><a href="${href}"><div class="img">${Final.imgTag(img, fallback)}</div></a><figcaption><span class="caps">${title}</span><span class="muted">${sub}</span></figcaption></figure>`;
   document.getElementById('shopPair').innerHTML =
     fig('v2/shop.html?cat=shirts', 'pieces/regular-collar-shirt__front', 'pieces/regular-collar-shirt__cloth', 'Shirts', 'From ' + Final.price(Math.min(...PRODUCTS.filter(p => p.cat === 'shirts').map(p => p.price)))) +
     fig('v2/shop.html?cat=jackets', 'pieces/heavy-wale-single-breasted-jacket__front', null, 'Tailoring', 'Jackets and coats');

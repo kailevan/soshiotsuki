@@ -9,10 +9,10 @@ PRODUCTS.push(
 );
 PRODUCTS.forEach(p => P[p.h] = p);
 const NEW_SHIRTS = ['drape-facing-shirt','heavy-wale-dress-shirt','bias-cut-heavy-wale-dress-shirt','regular-collar-shirt','reversible-sewing-wool-shirt'];
-NEW_SHIRTS.forEach(h => GEN_FRONT.add(h));
-['drape-facing-shirt','heavy-wale-dress-shirt','bias-cut-heavy-wale-dress-shirt','regular-collar-shirt'].forEach(h => GEN_CLOTH.add(h));
+NEW_SHIRTS.forEach(h => FRONT_SHOTS.add(h));
+['drape-facing-shirt','heavy-wale-dress-shirt','bias-cut-heavy-wale-dress-shirt','regular-collar-shirt'].forEach(h => CLOTH_SHOTS.add(h));
 
-['open-placket-jacket','open-placket-clasic-drill-coat','reversible-sewing-wool-shirt','cow-suede-harrington-jacket'].forEach(h => GEN_CLOTH.add(h));
+['open-placket-jacket','open-placket-clasic-drill-coat','reversible-sewing-wool-shirt','cow-suede-harrington-jacket'].forEach(h => CLOTH_SHOTS.add(h));
 
 const CROP = { 'kimono-lining-shirt':[57, 9, 1.75], 'knit-gilet':[48, 9, 1.75], 'cable-handmade-knit-pullover':[50, 10, 1.75], 'last-button-vest':[49, 9, 1.75] };
 
@@ -28,7 +28,6 @@ const BEST = ['drape-facing-shirt','heavy-wale-dress-shirt','double-inverted-tuc
 const SENTENCE = {
 
   b: { text:'A proposal of dandyism, made from the Japanese spirit and the technique of the tailor.' },
-  a: { text:'Soshi Otsuki cuts tailoring in Tokyo, from the cloth up: the suit of the Japanese salaryman, taken apart and made again.' },
 };
 
 const SRC = {

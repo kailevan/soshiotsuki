@@ -37,7 +37,7 @@
   const size = s => `<button class="${s === '48' ? 'cur' : ''} ${s === '52' ? 'na' : ''}">${s}</button>`;
 
   document.getElementById('main').innerHTML = `
-    <div class="stack">${gallery.map(([img, l], i) => `<div class="g">${Final.imgTag(img, i === 0 ? shot.cloth(p) : null)}<span class="chip">Image coming</span></div>`).join('')}</div>
+    <div class="stack">${gallery.map(([img, l], i) => `<div class="g">${Final.imgTag(img, i === 0 ? shot.cloth(p) : null)}</div>`).join('')}</div>
     <div class="info">
       <div>
         <h1 class="l">${p.name}</h1>

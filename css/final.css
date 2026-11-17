@@ -112,9 +112,6 @@ h1, h2, h3 { font-weight:400; }
 .about dt { color:var(--muted); }
 .about .imgs { display:flex; flex-direction:column; gap:8px; }
 
-.chip { position:absolute; top:12px; left:12px; background:var(--bg); padding:2px 6px; color:#A5683D; z-index:2; }
-.sample { color:var(--faint); }
-body:not(.show-standins) .chip, body:not(.show-standins) .sample { display:none; }
 .np-tab { position:fixed; right:0; top:50%; transform:translateY(-50%); writing-mode:vertical-rl; background:var(--ink); color:#FBF9F5; padding:10px 6px; z-index:90; }
 .np { position:fixed; right:40px; top:50%; transform:translateY(-50%); width:280px; background:#FBF9F5; border:1px solid var(--line); padding:18px; z-index:90; display:none; box-shadow:0 20px 60px rgba(28,27,25,.12); }
 .np.on { display:block; }

@@ -10,9 +10,6 @@
 .mini .tile .pr { justify-content:flex-start; }
 .sold { color:var(--muted); }
 
-.img .chip, .pdp .g .chip { display:none; }
-body.show-standins .pending .chip { display:block; }
-
 .home .index.home-index { opacity:0; pointer-events:none; transition:opacity .6s var(--ease); }
 .home .index.home-index.on { opacity:1; pointer-events:auto; }
 .home .topnav { transition:opacity .5s var(--ease); }
@@ -62,8 +59,6 @@ html:not(.settled) .focus > * { transition:none; }
 
 .pdp .line-l { margin-top:6px; font-style:italic; }
 .pdp .story { margin-top:0; }
-.check { color:#A5683D; margin-top:8px; display:none; }
-body.show-standins .check { display:block; }
 
 .prizepage { display:grid; grid-template-columns:var(--img) var(--info); column-gap:82px; padding-top:var(--m); }
 .prizepage .imgs { display:flex; flex-direction:column; gap:8px; }

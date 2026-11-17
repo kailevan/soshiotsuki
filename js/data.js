@@ -49,28 +49,16 @@ const LOOKS27 = Array.from({ length:35 }, (_, i) => ({ n:i + 1, img:'ss27/' + St
 
 const CATS = ['all','jackets','coats','trousers','shirts','knitwear','accessories'];
 
-const VERSIONS = [
-  { k:'h1', g:'Homepage', t:'H1 — Film', r:'Phoebe Philo', d:'Show film full screen, brush icon large in the centre.' },
-  { k:'h2', g:'Homepage', t:'H2 — Index', r:'MFPEN', d:'Fixed numbered index left, one calm column of images.' },
-  { k:'h3', g:'Homepage', t:'H3 — Store', r:'Auralee', d:'Campaign image, “New in” row, a cloth story, the prize.' },
-  { k:'p1', g:'Collection', t:'P1 — Index grid', r:'MFPEN + Margaret Howell', d:'Left index with categories, 3 columns, name · fabric · price.' },
-  { k:'p2', g:'Collection', t:'P2 — By look', r:'Zara Origins + Auralee', d:'Runway looks in order; open one to shop its pieces.' },
-  { k:'p3', g:'Collection', t:'P3 — Gapless', r:'Phoebe Philo + Auralee + Lemaire', d:'4 columns, no gaps, caption bands, a look breaks in.' },
-  { k:'d1', g:'Product', t:'D1 — Stack + notes column', r:'MFPEN + Auralee', d:'Stacked images, fixed column with the three notes.' },
-  { k:'d2', g:'Product', t:'D2 — Wall + card', r:'Phoebe Philo', d:'Image wall, a pinned card with three note tabs.' },
-  { k:'d3', g:'Product', t:'D3 — Notes beside images', r:'Zara Origins + Lemaire', d:'Each note sits next to the image it explains.' },
-];
-
 const eur = n => '€ ' + n.toLocaleString('en-GB');
 
 const CAMPAIGN = { 'inside-lapel-jacket':'campaign/inside-lapel-jacket' };
-const GEN_FRONT = new Set(PRODUCTS.map(p => p.h).filter(h => h !== 'juzu-necklace' && !CAMPAIGN[h]));
-const GEN_CLOTH = new Set(['draped-construction-bowed-lapel-jacket','inside-lapel-jacket','heavy-wale-single-breasted-jacket','wool-beaver-single-breasted-jacket',
+const FRONT_SHOTS = new Set(PRODUCTS.map(p => p.h).filter(h => h !== 'juzu-necklace' && !CAMPAIGN[h]));
+const CLOTH_SHOTS = new Set(['draped-construction-bowed-lapel-jacket','inside-lapel-jacket','heavy-wale-single-breasted-jacket','wool-beaver-single-breasted-jacket',
   'big-shoulder-shawl-collar-jacket','oiled-leather-blouson','open-placet-cashmere-coat','paraffin-cotton-coat','heavy-wale-high-west-double-pocket-pants',
   'double-inverted-tuck-trousers','kimono-lining-shirt','cable-handmade-knit-pullover','knit-gilet','last-button-vest']);
 const shot = {
-  front: p => CAMPAIGN[p.h] || (GEN_FRONT.has(p.h) ? `pieces/${p.h}__front` : p.img),
-  cloth: p => GEN_CLOTH.has(p.h) ? `pieces/${p.h}__cloth` : null,
+  front: p => CAMPAIGN[p.h] || (FRONT_SHOTS.has(p.h) ? `pieces/${p.h}__front` : p.img),
+  cloth: p => CLOTH_SHOTS.has(p.h) ? `pieces/${p.h}__cloth` : null,
   gallery: p => [[shot.front(p), 'Front'],
     ...(p.h === 'draped-construction-bowed-lapel-jacket' ? [[`pieces/${p.h}__motion`, 'In motion']] : []),
     ...(shot.cloth(p) ? [[shot.cloth(p), 'The cloth']] : [])],

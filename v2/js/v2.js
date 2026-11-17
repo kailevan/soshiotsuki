@@ -52,8 +52,8 @@ const Final = (() => {
     const c = shot.cloth(p);
     const alt = c ? imgTag(c, null, 'alt') : '';
 
-    const k = CROP[p.h] || CROP[p.cat], crop = k && GEN_FRONT.has(p.h) ? `transform:scale(${k[2]});transform-origin:${k[0]}% ${k[1]}%` : '';
-    return `<a class="tile${p.sold ? ' is-sold' : ''}" href="${url.product(p.h)}"><div class="img">${imgTag(shot.front(p), c, '', crop)}${alt}<span class="chip">Image coming</span></div>
+    const k = CROP[p.h] || CROP[p.cat], crop = k && FRONT_SHOTS.has(p.h) ? `transform:scale(${k[2]});transform-origin:${k[0]}% ${k[1]}%` : '';
+    return `<a class="tile${p.sold ? ' is-sold' : ''}" href="${url.product(p.h)}"><div class="img">${imgTag(shot.front(p), c, '', crop)}${alt}</div>
       <div class="txt"><span class="name">${p.name}</span>${STORY[p.h] ? `<span class="muted line">${tileLine(STORY[p.h].line)}</span>` : ''}<span class="pr">${price(p.price)}${soldMark(p)}</span></div></a>`;
   }
   const lookTile = l => `<a class="tile" href="${url.look(l.n)}"><div class="img"><img src="${IMG(l.img)}" alt="Look ${l.n}" loading="lazy"></div>
