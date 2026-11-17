@@ -34,18 +34,18 @@
     </section>
 
     <section class="prize-block">
-      <a class="img" href="v2/prize.html"><img src="assets/about/lvmh-prize-winner.webp" alt="Soshi Otsuki, LVMH Prize winner 2025"></a>
+      <a class="img" href="#off"><img src="assets/about/lvmh-prize-winner.webp" alt="Soshi Otsuki, LVMH Prize winner 2025"></a>
       <div class="text" id="prizeText"></div>
     </section>
 
     <div class="seasons">
-      <figure><a href="v2/spring-summer-2027.html"><div class="img wide"><img src="assets/img/show_ss27_paris.webp" alt="The Spring Summer 2027 show in Paris"></div></a><figcaption><span class="caps">Spring Summer 2027</span><span class="muted">Paris, June 2026</span></figcaption></figure>
-      <figure><a href="v2/fall-winter-2026.html"><div class="img wide"><img src="assets/img/show_fw26_florence.webp" alt="The Fall Winter 2026 show in Florence"></div></a><figcaption><span class="caps">Fall Winter 2026</span><span class="muted">Florence, January 2026</span></figcaption></figure>
+      <figure><a href="#off"><div class="img wide"><img src="assets/img/show_ss27_paris.webp" alt="The Spring Summer 2027 show in Paris"></div></a><figcaption><span class="caps">Spring Summer 2027</span><span class="muted">Paris, June 2026</span></figcaption></figure>
+      <figure><a href="#off"><div class="img wide"><img src="assets/img/show_fw26_florence.webp" alt="The Fall Winter 2026 show in Florence"></div></a><figcaption><span class="caps">Fall Winter 2026</span><span class="muted">Florence, January 2026</span></figcaption></figure>
     </div>
 
     <div class="pair" id="shopPair"></div>
 
-    <a class="about-block" href="v2/about.html">
+    <a class="about-block" href="#off">
       <span class="img"><img src="assets/img/film_bunka_doc_002_crop.webp" alt="The Soshiotsuki inner label, size 48"></span>
       <span class="t"><span class="caps">About</span><span class="muted">Tokyo, since 2015</span></span>
     </a>
@@ -54,7 +54,7 @@
 
 <script src="js/data.js?v=3"></script>
 <script src="v2/js/data2.js?v=10"></script>
-<script src="v2/js/v2.js?v=8"></script>
+<script src="v2/js/v2.js?v=9"></script>
 <script>
   Final.init({ page:'home' });
   Final.brush(document.getElementById('brush'));
@@ -76,10 +76,10 @@
   best.addEventListener('dragstart', e => e.preventDefault());
 
   document.getElementById('prizeText').innerHTML = `
-    <span class="caps"><a class="prize-link" href="v2/prize.html">LVMH Prize 2025${Final.STAR}</a></span>
+    <span class="caps"><a class="prize-link" href="#off">LVMH Prize 2025${Final.STAR}</a></span>
     <blockquote>“He expressed emotion and know-how… It was quite unanimous.”<cite>${PRIZE.quoteArnault.who}</cite></blockquote>
     <p class="m">Shortlisted in 2016, two collections in. Back nine years later to win.</p>
-    <a class="caps muted" href="v2/prize.html">Read the story</a>`;
+    <a class="caps muted" href="#off">Read the story</a>`;
 
   const fig = (href, img, fallback, title, sub) => `<figure><a href="${href}"><div class="img">${Final.imgTag(img, fallback)}</div></a><figcaption><span class="caps">${title}</span><span class="muted">${sub}</span></figcaption></figure>`;
   document.getElementById('shopPair').innerHTML =

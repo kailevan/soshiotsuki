@@ -12,7 +12,7 @@ const Final = (() => {
 
   const CAT_NAME = { all:'All', jackets:'Jackets', coats:'Coats', trousers:'Trousers', shirts:'Shirts', knitwear:'Knitwear', accessories:'Accessories' };
   const url = {
-    home: 'v2/index.html', about: 'v2/about.html', collection: 'v2/fall-winter-2026.html', ss27: 'v2/spring-summer-2027.html', prize: 'v2/prize.html',
+    home: 'v2/index.html', about: '#off', collection: '#off', ss27: '#off', prize: '#off',
     shop: c => 'v2/shop.html' + (c && c !== 'all' ? '?cat=' + c : ''),
     look: n => 'v2/fall-winter-2026.html?look=' + n,
     ss27look: n => 'v2/spring-summer-2027.html?look=' + n,
@@ -93,6 +93,7 @@ const Final = (() => {
     wire();
 
     document.addEventListener('click', e => {
+      if (e.target.closest('a[href="#off"]')) return e.preventDefault();
       const a = e.target.closest('a[href="#"]'); if (!a) return;
       e.preventDefault();
       toast(a.classList.contains('bag') ? (+get('bag', '0') ? bag() : 'Your bag is empty') : 'Not part of this prototype');
